@@ -1,0 +1,78 @@
+Datetime
+
+from datetime import date
+
+aa = date(2016,10,20)
+aa.year
+aa.month
+aa.day
+aa.weekday()
+	0 = Monday
+
+first_date.isoformat()
+
+from datetime import timedelta
+	on subtraction gives timedelta
+	td = timedelta(days=29)
+	dat1 + td -> new date
+
+dt.strftime("Year is %Y")
+dt.strftime("Year is %Y%m%d")
+
+
+from datetime import datetime
+aa = dateime(2016,10,20,15,23,25)
+aa.repalce(minute=0, second=0, microsecond=0)
+
+datetime.strptime(<datetime string>,<format string>)
+
+datetime.fromtimestamp(ts)
+
+subtracting datetime -> timedelta
+	timedelta.total_seconds()
+
+UTC
+from datetime import timezone
+ET = timezone(timedelta(hours=-5))
+dt=datetime(2017, 12, 30, 15, 9, 3, tzinfo = ET)
+
+IST = timezone(timedelta(hours=5, minute=30))
+print(dt.astimezone(IST))
+
+replacing timezone
+dt.repalce(tzinfo = timezone.utc)
+
+#timezone information package
+from dateutil import tz
+
+# Continent/City
+et = tz.gettz("America/New_York")
+
+
+daylight saving time
+tz.datetime_ambiguous(dt)	
+	returns boolean
+tz.enfold(dt)
+	makes the dt, the 2nd boundary/repetition
+
+
+Pandas
+read_csv
+	parse_dates = [col1,col2] or convert using pd.to_datetime
+
+rides["duration"].dt.total_seconds()
+
+rides["start"].dt.tz_localize("America/New_York")
+rides["start"].dt.tz_localize("America/New_York", ambiguous = "NaT")
+rides['Start date'].dt.tz_convert("Europe/London")
+
+
+print("{} rides were joyrides".format(joyrides.sum()))
+
+# Median of all rides
+print("The median duration overall was {:.2f} seconds"\
+      .format(rides['Duration'].median()))
+
+# Median of joyrides
+print("The median duration for joyrides was {:.2f} seconds"\
+      .format(rides[joyrides]['Duration'].median()))
